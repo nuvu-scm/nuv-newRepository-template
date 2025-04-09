@@ -1,53 +1,115 @@
-# pre-commit-config.yaml
-
+# -------------------------
+# CONFIGURACIÓN GENERAL
+# -------------------------
 default_install_hook_types:
-- pre-commit
-- commit-msg
+  - pre-commit
+  - commit-msg
 
 default_language_version:
-  python: python3.13
+  python: python3.13  # Cambia la versión si tu entorno usa otra
 
+# -------------------------
+# HOOKS COMUNES A TODOS LOS LENGUAJES
+# -------------------------
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v5.0.0
   hooks:
-  - id: trailing-whitespace
-  - id: end-of-file-fixer
-  - id: mixed-line-ending
-  - id: check-yaml
-  - id: sort-simple-yaml
-  - id: check-added-large-files
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: mixed-line-ending
+    - id: check-added-large-files
+    - id: check-yaml
+    - id: sort-simple-yaml
 
-- repo: https://github.com/psf/black
-  rev: 25.1.0
-  hooks:
-  - id: black
-    # args:
-    # - --config=pyproject.toml
+# -------------------------
+# PYTHON HOOKS
+# -------------------------
+# Descomenta esta sección si estás trabajando con Python
 
-- repo: https://github.com/PyCQA/isort
-  rev: 6.0.1
-  hooks:
-  - id: isort
-    args: ["--profile", "black", "--filter-files"]
+# - repo: https://github.com/psf/black
+#   rev: 25.1.0
+#   hooks:
+#     - id: black
+#       # args:
+#       #   - --config=pyproject.toml
 
-- repo: https://github.com/PyCQA/flake8
-  rev: 7.1.2
-  hooks:
-  - id: flake8
+# - repo: https://github.com/PyCQA/isort
+#   rev: 6.0.1
+#   hooks:
+#     - id: isort
+#       args: ["--profile", "black", "--filter-files"]
 
+# - repo: https://github.com/PyCQA/flake8
+#   rev: 7.1.2
+#   hooks:
+#     - id: flake8
 
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.15.0
-  hooks:
-  - id: mypy
-    additional_dependencies: [
-      types-requests,
-    ]
+# - repo: https://github.com/pre-commit/mirrors-mypy
+#   rev: v1.15.0
+#   hooks:
+#     - id: mypy
+#       additional_dependencies: [types-requests]
 
+# -------------------------
+# JAVASCRIPT / NODE HOOKS
+# -------------------------
+# - repo: https://github.com/pre-commit/mirrors-eslint
+#   rev: v8.55.0
+#   hooks:
+#     - id: eslint
+#       files: \.js$|\.ts$
+#       args: ["--max-warnings=0"]
+
+# - repo: https://github.com/pre-commit/mirrors-prettier
+#   rev: v3.2.4
+#   hooks:
+#     - id: prettier
+#       files: \.(js|ts|json|md|css|html)$
+
+# -------------------------
+# JAVA HOOKS
+# -------------------------
+# - repo: https://github.com/diffplug/spotless
+#   rev: v6.25.0
+#   hooks:
+#     - id: spotless
+#       args: ["apply"]
+
+# - repo: https://github.com/diffplug/spotless
+#   rev: v6.25.0
+#   hooks:
+#     - id: spotless-check
+#       args: ["check"]
+
+# -------------------------
+# COMMIT MESSAGE VALIDATION (CONVENCIONAL)
+# -------------------------
 - repo: https://github.com/compilerla/conventional-pre-commit
   rev: v4.0.0
   hooks:
-  - id: conventional-pre-commit
-    stages: [ commit-msg ]
-    args: [ --verbose ]
+    - id: conventional-pre-commit
+      stages: [commit-msg]
+      args: [--verbose]
+
+# -------------------------
+# OTROS LENGUAJES O FORMATOS
+# -------------------------
+
+# DOCKERFILE
+# - repo: https://github.com/hadolint/hadolint
+#   rev: v2.12.0
+#   hooks:
+#     - id: hadolint
+
+# MARKDOWN
+# - repo: https://github.com/markdownlint/markdownlint
+#   rev: v0.12.0
+#   hooks:
+#     - id: markdownlint
+
+# SHELL SCRIPTS
+# - repo: https://github.com/koalaman/shellcheck
+#   rev: v0.9.0
+#   hooks:
+#     - id: shellcheck
