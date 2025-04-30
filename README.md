@@ -360,6 +360,86 @@ Además de los frameworks mencionados anteriormente, SonarQube puede analizar pr
   # Excluir archivos de test, de terceros, o generados automáticamente
   sonar.exclusions=**/*.test.js,**/node_modules/**,**/generated/**
   ```
+## Usando SonarLint - Plugin para IDE
+
+SonarLint es una extensión para tu IDE que te permite detectar y corregir problemas de calidad de código mientras programas, antes de enviar tus cambios a SonarQube.
+
+### ¿Por qué usar SonarLint?
+
+- **Detección temprana**: Encuentra problemas mientras escribes código, sin esperar al análisis del CI/CD
+- **Desarrollo más rápido**: Corrige problemas inmediatamente sin ciclos de retroalimentación largos
+- **Coherencia con SonarQube**: Usa las mismas reglas que el análisis en servidor
+- **Modo conectado**: Sincroniza con el servidor de SonarQube para mantener configuraciones consistentes
+
+### IDEs soportados
+
+SonarLint está disponible para:
+- IntelliJ IDEA (y otros productos JetBrains)
+- Visual Studio Code
+- Eclipse
+- Visual Studio
+
+### Instalación
+
+#### Para Visual Studio Code:
+1. Abre VS Code
+2. Ve a la pestaña de extensiones (Ctrl+Shift+X o Cmd+Shift+X)
+3. Busca "SonarLint"
+4. Haz clic en "Instalar"
+
+#### Para IntelliJ IDEA/WebStorm/PyCharm:
+1. Ve a Settings/Preferences > Plugins
+2. Busca "SonarLint" en el Marketplace
+3. Haz clic en "Instalar"
+4. Reinicia el IDE cuando se te solicite
+
+#### Para Eclipse:
+1. Ayuda > Eclipse Marketplace
+2. Busca "SonarLint"
+3. Haz clic en "Instalar"
+
+### Configuración del modo conectado
+
+Para sincronizar SonarLint con nuestro servidor de SonarQube:
+
+#### En VS Code:
+1. Abre la paleta de comandos (Ctrl+Shift+P o Cmd+Shift+P)
+2. Escribe "SonarLint: Connect to SonarQube"
+3. Completa la configuración:
+   - URL del servidor: `https://sonarqube.ia.nuvu.cc`
+   - Token: Genera uno personal desde SonarQube > Mi cuenta > Tokens de seguridad
+   - Proyecto: Selecciona tu proyecto
+
+#### En IntelliJ IDEA:
+1. Ve a Settings/Preferences > Tools > SonarLint
+2. Haz clic en "+" para añadir una conexión a SonarQube
+3. Completa la configuración con la URL y el token
+4. En la pestaña "Project Settings", asocia tu proyecto local con el proyecto de SonarQube
+
+### Uso diario
+
+Una vez instalado, SonarLint:
+- Subrayará problemas potenciales directamente en tu editor
+- Proporcionará detalles sobre el problema al pasar el cursor sobre el subrayado
+- Ofrecerá acciones rápidas (quickfixes) para algunos problemas
+- Mostrará la gravedad de los problemas (crítico, mayor, menor, etc.)
+
+### Beneficios para el equipo
+
+- **Calidad consistente**: Todos los miembros del equipo siguen las mismas reglas
+- **Menor revisión de código**: Menos comentarios sobre problemas básicos de calidad en las revisiones
+- **Mejor Code Quality Gate**: Menos probabilidades de fallar en los análisis de SonarQube
+- **Aprendizaje continuo**: Los desarrolladores aprenden las mejores prácticas mientras programan
+
+### Personalización
+
+Puedes ajustar reglas específicas:
+1. Ve a la configuración de SonarLint en tu IDE
+2. Busca las reglas por lenguaje
+3. Habilita, deshabilita o ajusta la severidad según las necesidades de tu proyecto
+
+> **Nota**: En modo conectado, las reglas se sincronizarán con el servidor SonarQube y algunas personalizaciones locales podrían ser sobrescritas.
+
 
 ## Solución de problemas comunes
 
